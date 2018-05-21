@@ -9,4 +9,4 @@ Labs:
  1) Linear models and gradient descent
  2) Multilayer perceptron and autoencoders
  3) Chinese characters
- 4) Reinforcement learning
+ 4) Reinforcement learning and tic-tac-toe game with RL
