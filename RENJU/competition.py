@@ -32,7 +32,7 @@ def list_positions(board, player):
 
 def sequence_length(board, I, J, value):
     length = 0
-    
+
     for i, j in zip(I, J):
         if board[i, j] != value:
             break
@@ -268,6 +268,7 @@ class MCTS():
                 # values -= values.mean()
                 # if values.std():
                 #    values /= values.std()
+                ucb = ucb_eps * np.sqrt(2 * np.log(temp_root._N + 1) / (1 + self._iters + temp_root._N * 2))
                 # ucb = ucb_eps * np.sqrt(2 * np.log(temp_root._N + 1) / (1 + self._iters))
                 # ucb -= ucb.mean()
                 # if ucb.std():
@@ -275,7 +276,7 @@ class MCTS():
 
                 # temp_pos = numpy.argmax(values + ucb + temp_root._P)
                 values = (temp_root._R + 10 * temp_root._P) / (1 + temp_root._N) + (temp_root._R > self._param1 * temp_root._N) + (temp_root._R > self._param2 * temp_root._N)
-                temp_pos = numpy.argmax(values)
+                temp_pos = numpy.argmax(values + ucb)
                 temp_parsed_pos = numpy.unravel_index(temp_pos, (15, 15))
 
                 path.append(temp_pos)
@@ -383,6 +384,7 @@ class MCTS():
 
         if (len(list_positions(board, 0)) == 225):
             # first move in center of board
+            # 119 - for move in center of right column
             return numpy.unravel_index(112, (15, 15))
 
         done = True
