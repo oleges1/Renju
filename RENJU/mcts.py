@@ -137,14 +137,14 @@ class MCTS(Agent):
                 #values -= values.mean()
                 #if values.std():
                 #    values /= values.std()
-                # ucb = ucb_eps * np.sqrt(2 * np.log(temp_root._N + 1) / (1 + self._iters))
+                ucb = ucb_eps * np.sqrt(2 * np.log(temp_root._N + 1) / (1 + self._iters + temp_root._N * 2))
                 #ucb -= ucb.mean()
                 #if ucb.std():
                 #    ucb /= ucb.std()
 
                 #temp_pos = numpy.argmax(values + ucb + temp_root._P)
                 values = (temp_root._R + 10 * temp_root._P) / (1 + temp_root._N) + (temp_root._R > self._param1 * temp_root._N) + (temp_root._R > self._param2 * temp_root._N)
-                temp_pos = numpy.argmax(values)
+                temp_pos = numpy.argmax(values + ucb)
                 temp_parsed_pos = numpy.unravel_index(temp_pos, (15, 15))
 
                 path.append(temp_pos)
