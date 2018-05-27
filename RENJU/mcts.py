@@ -137,7 +137,7 @@ class MCTS(Agent):
                 #values -= values.mean()
                 #if values.std():
                 #    values /= values.std()
-                ucb = ucb_eps * np.sqrt(2 * np.log(temp_root._N + 1) / (1 + self._iters + temp_root._N * 2))
+                ucb = ucb_eps * np.sqrt(2 * np.log(temp_root._N + 1) / (1 + self._iters + temp_root._N.sum()))
                 #ucb -= ucb.mean()
                 #if ucb.std():
                 #    ucb /= ucb.std()
