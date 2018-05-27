@@ -462,7 +462,7 @@ if __name__ == "__main__":
     mcts = MCTS(name = 'KOPATYCH_KOPAET',
             black_model = (papa_black, papa_black_graph), white_model = (papa_white, papa_white_graph),
                     black_rollout = (papa_black, papa_black_graph), white_rollout = (papa_white, papa_white_graph), 
-                           timeout = 14.85, high = 16, gamma = 0.99, verbose = 1, min_prob = 0.8, param1 = 0.2, param2 = 0.65)
+                           timeout = 14.75, high = 14, gamma = 0.99, verbose = 1, min_prob = 0.8, param1 = 0.2, param2 = 0.65)
 
     logging.debug('mcts created')
 
