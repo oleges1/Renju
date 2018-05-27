@@ -452,9 +452,9 @@ if __name__ == "__main__":
     LOG_FORMAT = '%(levelname)s:%(asctime)s: KOPATYCH_KOPAET-{0}: %(message)s'.format(pid)
     logging.basicConfig(format=LOG_FORMAT, level=logging.DEBUG)
 
-    papa_black = load_model('papa_black4096.h5')
+    papa_black = load_model('kopatych_papa_black4096.h5')
     papa_black_graph = tf.get_default_graph()
-    papa_white = load_model('papa_white4096.h5')
+    papa_white = load_model('kopatych_papa_white4096.h5')
     papa_white_graph = tf.get_default_graph()
 
     logging.debug('models loaded')
@@ -462,7 +462,7 @@ if __name__ == "__main__":
     mcts = MCTS(name = 'KOPATYCH_KOPAET',
             black_model = (papa_black, papa_black_graph), white_model = (papa_white, papa_white_graph),
                     black_rollout = (papa_black, papa_black_graph), white_rollout = (papa_white, papa_white_graph), 
-                           timeout = 14.75, high = 14, gamma = 0.99, verbose = 1, min_prob = 0.8, param1 = 0.2, param2 = 0.65)
+                           timeout = 14.85, high = 14, gamma = 0.99, verbose = 1, min_prob = 0.8, param1 = 0.2, param2 = 0.65)
 
     logging.debug('mcts created')
 
@@ -482,7 +482,10 @@ if __name__ == "__main__":
 
             res = mcts.policy_test(board, game.split(' '))
             logging.debug('result move:' + to_move(res))
-            print(to_move(res))
+            if sys.stdout.closed:
+                logging.debug('sys closed')
+            sys.stdout.write(to_move(res) + '\n')
+            sys.stdout.flush()
         else:
             logging.debug('finishing...')
             break
