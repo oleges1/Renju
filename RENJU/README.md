@@ -27,4 +27,4 @@ Then run example.ipynb in jupyter and have fun!
 * competition.py - agent for competition of agents in gomoku, based on mcts, named `Kopatych` in honor of the popular russian cartoon hero.
 
 [papa_black]:https://drive.google.com/open?id=1GQ2Bs3z84mpJbshxeinWZE84XlrNujmM
-[papa_white]:https://drive.google.com/open?id=1BsEL7tphJtLTwHEEGXUzxh61x120cOq4
+[papa_white]:https://drive.google.com/open?id=18edjuILw_t84A8NcAHZCpDnn2TOkTfYo
