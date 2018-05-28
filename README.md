@@ -9,9 +9,10 @@ Prepared agent can be found at the folder RENJU.
 ### Labs:
  1) Linear models and gradient descent
  2) Multilayer perceptron and autoencoders
- 3) Chinese characters - competition at kaggle
+ 3) Chinese characters - [competition] at kaggle
  4) Reinforcement learning and tic-tac-toe game with RL
 
 ### Special thanks to our mentor - [Denis Simagin]
 
 [Denis Simagin]:https://github.com/dasimagin
+[competition]:https://www.kaggle.com/c/ch-2017
