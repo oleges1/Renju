@@ -1,13 +1,11 @@
 # RENJU PLAYER
 ## Installation guide:
 
-You need ubuntu 14 or 16.
+You need:
+* Ubuntu 14 or 16
+* TensorFlow 1.4-1.8 and keras 2.1.5-2.1.6
+* Python 3.4
 
-TensorFlow 1.4-1.8 and keras 2.1.5-2.1.6
-
-Python 3.4
-
-... to do ...
 ## File guide:
 
     * agent.py - collection of diffrents agents, ex. Policy and Beamsearch agents
