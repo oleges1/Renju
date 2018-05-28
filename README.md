@@ -2,7 +2,7 @@
 
 Educational ML project.
 
-In the end we are going to prepare algorithm good in playing Renju (Gomoku) - tic-tac-toe, but on 15 * 15, and five in line.
+In the end we are going to prepare algorithm good in playing Renju (Gomoku) - tic-tac-toe, but on 15 * 15, five in line.
 
 Prepared agent can be found at folder RENJU.
 
