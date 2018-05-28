@@ -24,7 +24,7 @@ Then run example.ipynb in jupyter and have fun!
 * util.py - all needed functions
 * cnn_learning.ipynb - preparing networks in google colaboratory
 * example.ipynb - simple example
-* competition.py - agent for competition of agents in gomoku, based on mcts, named `Kopatych` in honor of the popular russian cartoon hero - this agent won an agents competition on the our project
+* competition.py - agent for competition of agents in gomoku, based on mcts, named `Kopatych` in honor of the popular russian cartoon hero and all in all `Kopatych` took the first place
 
 [papa_black]:https://drive.google.com/open?id=1GQ2Bs3z84mpJbshxeinWZE84XlrNujmM
 [papa_white]:https://drive.google.com/open?id=18edjuILw_t84A8NcAHZCpDnn2TOkTfYo
