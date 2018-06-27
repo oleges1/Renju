@@ -88,9 +88,10 @@ class Game:
 
         if not self._result and util.check(self._board, pos):
             self._result = self._player
-            return
+            return False
 
         self._player = self._player.another()
+        return True
 
 def number_shift(n):
     if n >= 100:

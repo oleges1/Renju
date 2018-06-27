@@ -8,6 +8,13 @@ from agent import Agent
 from time import time
 
 class Node():
+    # class for a node of a tree, store:
+    # - probs of children in _P
+    # - counter moves in children in _N
+    # - rewards in _R
+    # - links in list of children
+    # also can make a children by travail
+
     def __init__(self, board, color, black_model, white_model):
         self._color = color
         self._black_model = black_model
@@ -26,12 +33,7 @@ class Node():
     
     def travail(self, board, move):
 
-        #if (self._visited):
-        #    return False
-
         parsed_move = np.unravel_index(move, (15, 15))
-        #if (board[parsed_move] != 0):
-        #    return False
         
         board[parsed_move] = 1
         next_color = 'white'
@@ -133,16 +135,9 @@ class MCTS(Agent):
         while temp_high < self._high:
             temp_high += 1
             if (temp_root._visited):
-                #values = (temp_root._R) / (1 + temp_root._N)
-                #values -= values.mean()
-                #if values.std():
-                #    values /= values.std()
-                ucb = ucb_eps * np.sqrt(2 * np.log(temp_root._N + 1) / (1 + self._iters + temp_root._N.sum()))
-                #ucb -= ucb.mean()
-                #if ucb.std():
-                #    ucb /= ucb.std()
 
-                #temp_pos = numpy.argmax(values + ucb + temp_root._P)
+                ucb = ucb_eps * np.sqrt(2 * np.log(temp_root._N + 1) / (1 + self._iters + temp_root._N.sum()))
+
                 values = (temp_root._R + 10 * temp_root._P) / (1 + temp_root._N) + (temp_root._R > self._param1 * temp_root._N) + (temp_root._R > self._param2 * temp_root._N)
                 temp_pos = numpy.argmax(values + ucb)
                 temp_parsed_pos = numpy.unravel_index(temp_pos, (15, 15))
@@ -282,12 +277,7 @@ class MCTS(Agent):
             self._root = Node(self._board, self._color, self._node_model_black, self._node_model_white)
         
         self.tree_search()
-        #norm_values = (self._root._R) / (1 + self._root._N)
-        #norm_values -= norm_values.mean()
-        #if norm_values.std():
-        #    norm_values /= norm_values.std()
-        #
-        #values = (norm_values + self._root._P * 3) * available * (1 + checker)
+
         values = (self._root._N > self._iters / 5) * self._root._R / (1 + self._root._N) * available * (1 + 10 * checker)
         
         if np.max(values) > self._min_prob:
@@ -306,69 +296,7 @@ class MCTS(Agent):
                     print(np.where(self._root._R != 0))
                     continue
             
-            # code_move = numpy.argmax(values.reshape(1, 225))
             print(self._name + ':', util.to_move([code_move // 15, code_move % 15]), \
                   'working time:', time() - self._start_time, 'iterations:', self._iters)
 
-        #values -= values.mean()
-        #values /= values.std()
         return res.reshape(1, 225)
-
-"""
-    def policy_test(self, board):
-        self._start_time = time()
-        if not self._color:
-            if ((225 - len(util.list_positions(game.board(), renju.Player.NONE))) % 2 == 1):
-                self._color = 'white'
-            else:
-                self._color = 'black'
-        if (len(util.list_positions(game.board(), renju.Player.NONE)) == 225):
-            res = numpy.zeros((225, 1))
-            res[112] = 1
-            return res.reshape((1, 225))
-        
-        checker = np.zeros(225)
-        available = numpy.zeros(225)
-        self._board = np.copy(-game.board())
-        for parsed_pos in util.list_positions(self._board, renju.Player.NONE):
-            pos = parsed_pos[0] * 15 + parsed_pos[1]
-            parsed_pos = tuple(parsed_pos)
-            
-            self._board[parsed_pos] = 1
-            if (util.check(self._board, parsed_pos)):
-                checker[pos] += 1
-            self._board[parsed_pos] = -1
-            if (util.check(self._board, parsed_pos)):
-                checker[pos] += 1
-            self._board[parsed_pos] = 0
-            available[pos] = 1
-        
-        self._root = Node(self._board, self._color, self._node_model_black, self._node_model_white)
-        
-        self.tree_search()
-        #norm_values = (self._root._R) / (1 + self._root._N)
-        #norm_values -= norm_values.mean()
-        #if norm_values.std():
-        #    norm_values /= norm_values.std()
-        #
-        #values = (norm_values + self._root._P * 3) * available * (1 + checker)
-        values = (self._root._N > self._iters / 5) * self._root._R / (1 + self._root._N) * available * (1 + 10 * checker)
-        
-        if np.max(values) > self._min_prob:
-            code_move = np.argmax(values)
-        else:
-            code_move = np.argmax((self._root._N) * available * (1 + 10 * checker))
-        
-        
-        if (self._verbose):
-            for elem in np.where(self._root._R != 0)[0]:
-                try:
-                    print(util.to_move(numpy.unravel_index(int(elem), (15, 15))), 'R:', self._root._R[int(elem)], 'V:', values[int(elem)])
-                except:
-                    print(np.where(self._root._R != 0))
-                    continue
-            
-            print(self._name + ':', util.to_move([code_move // 15, code_move % 15]), \
-                  'working time:', time() - self._start_time, 'iterations:', self._iters)
-
-        return numpy.unravel_index(code_move, (15, 15))"""
