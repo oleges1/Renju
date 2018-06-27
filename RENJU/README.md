@@ -20,7 +20,8 @@ Also you need to load my models from google drive: [papa_black], [papa_white].
 Run `example.ipynb` in jupyter and have fun!
 
 ### Playing in separate window by clicking:
-Run `gui_example.py`
+Run `gui_example.py` and just follow the instructions.
+This method offers more comfortable way of playing Gomoku.
 
 ## File guide:
 
