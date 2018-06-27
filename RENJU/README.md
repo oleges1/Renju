@@ -12,7 +12,7 @@ On other backend correct working is not guaranteed.
 You need to copy all files from this repository, maybe except cnn_learning.ipynb and runner_models.ipynb.
 
 To do it just use command:
-`git clone https://github.com/oleges1/Renju/Renju`
+`git clone https://github.com/oleges1/Renju/RENJU`
 
 Also you need to load my models from google drive: [papa_black], [papa_white].
 
